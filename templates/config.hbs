@@ -1,0 +1,31 @@
+<div class="phaseborn-app">
+  <div class="phaseborn-original">
+    <img src="" alt="Face 1 - Original">
+    <div class="original-info">
+      <strong>Face 1 — Original</strong>
+      <p>Always matches the token as it already is. You don't need to configure this phase.</p>
+      <p class="original-meta"></p>
+      <div class="original-actions">
+        <button type="button" data-action="recaptureOriginal" title="Use the token's current appearance as Face 1">
+          <i class="fas fa-camera"></i> Recapture
+        </button>
+        <button type="button" data-action="restoreOriginal" title="Snap the token back to Face 1 right now">
+          <i class="fas fa-undo"></i> Restore Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">
+    Configure the <strong>extra</strong> phases below (from the 2nd one on). When the actor's
+    remaining HP drops to the configured value (absolute HP, not %), the token switches
+    automatically. Use the eye icon to preview how it will look without waiting for combat.
+  </p>
+
+  <div class="phaseborn-rows"></div>
+
+  <footer class="phaseborn-footer">
+    <button type="button" data-action="addRow"><i class="fas fa-plus"></i> Add Phase</button>
+    <button type="button" data-action="save" class="bright"><i class="fas fa-save"></i> Save</button>
+  </footer>
+</div>

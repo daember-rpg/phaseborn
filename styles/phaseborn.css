@@ -1,0 +1,194 @@
+.phaseborn-app {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+}
+
+/* ---------- Painel da Face 1 / Original ---------- */
+
+.phaseborn-original {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(120, 90, 20, 0.08);
+  border: 1px solid rgba(120, 90, 20, 0.35);
+  border-left: 4px solid #c9971f;
+}
+
+.phaseborn-original img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--color-border-light-tertiary, #999);
+  flex: 0 0 auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.phaseborn-original .original-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.phaseborn-original .original-info strong {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.phaseborn-original .original-info p {
+  margin: 0;
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.phaseborn-original .original-meta {
+  font-family: var(--font-mono, monospace);
+  opacity: 0.65 !important;
+}
+
+.phaseborn-original .original-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.phaseborn-original .original-actions button {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.phaseborn-app .hint {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ---------- Linhas de fase ---------- */
+
+.phaseborn-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phaseborn-row {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 10px 12px 10px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border-light-tertiary, #999);
+  border-left: 4px solid var(--color-border-highlight, #6c6c6c);
+  flex-wrap: wrap;
+  transition: border-left-color 120ms ease, box-shadow 120ms ease;
+}
+
+.phaseborn-row:hover {
+  border-left-color: #c9971f;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.phaseborn-row .field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+}
+
+.phaseborn-row .field label {
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+.phaseborn-row .field input,
+.phaseborn-row .field select {
+  border-radius: 5px;
+  padding: 3px 6px;
+}
+
+.phaseborn-row .field.tiny {
+  width: 84px;
+}
+
+.phaseborn-row .field.grow {
+  flex: 1 1 200px;
+}
+
+.phaseborn-row .field.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 5px;
+  white-space: nowrap;
+}
+
+.phaseborn-row .img-row {
+  display: flex;
+  gap: 4px;
+}
+
+.phaseborn-row .img-row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.phaseborn-row .row-actions {
+  display: flex;
+  gap: 4px;
+  align-self: center;
+  margin-left: auto;
+}
+
+.phaseborn-row .row-actions button,
+.phaseborn-row .img-row button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.phaseborn-row [data-action="previewRow"]:hover {
+  color: #c9971f;
+}
+
+.phaseborn-row .remove-row:hover {
+  color: #c0392b;
+}
+
+/* ---------- Footer ---------- */
+
+.phaseborn-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 4px;
+  border-top: 1px solid var(--color-border-light-tertiary, #999);
+}
+
+.phaseborn-footer button {
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 12px;
+}
+
+.phaseborn-footer .bright {
+  font-weight: 600;
+}
+
+.phaseborn-hud-button i {
+  pointer-events: none;
+}
