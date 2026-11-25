@@ -1,9 +1,12 @@
 name: Release
 
+# Publishes a GitHub release whenever the version in module.json has no
+# release yet. Bump "version" in module.json and push to main to ship an update.
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,22 +17,32 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check tag matches module.json version
+      - name: Read version
+        id: ver
+        run: echo "tag=v$(jq -r .version module.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Check whether this release already exists
+        id: exists
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          VERSION=$(jq -r .version module.json)
-          if [ "v$VERSION" != "${GITHUB_REF_NAME}" ]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match module.json version v$VERSION"
-            exit 1
+          if gh release view "${{ steps.ver.outputs.tag }}" >/dev/null 2>&1; then
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "found=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build module zip
+        if: steps.exists.outputs.found == 'false'
         run: |
           zip -r phaseborn.zip module.json README.md CHANGELOG.md LICENSE.md lang scripts styles templates
 
       - name: Create GitHub release
+        if: steps.exists.outputs.found == 'false'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" phaseborn.zip module.json \
-            --title "Phaseborn ${GITHUB_REF_NAME}" \
+          gh release create "${{ steps.ver.outputs.tag }}" phaseborn.zip module.json \
+            --target "${GITHUB_SHA}" \
+            --title "Phaseborn ${{ steps.ver.outputs.tag }}" \
             --notes "See CHANGELOG.md for details."
